@@ -9,7 +9,7 @@ public class ComputerGame : ObjectOfInterestFeature
         public String                       Name = "unknown";
         public FileSystem                   Parent = null;
         public List<FileSystem>             Children = new List<FileSystem>();
-        public List<Tuple<String, String>>  Files = new List<Tuple<String, String>>();
+        public List<Tuple<String, String, Boolean>>  Files = new List<Tuple<String, String, Boolean>>();
 
         public FileSystem(String name)
         {
@@ -32,18 +32,19 @@ public class ComputerGame : ObjectOfInterestFeature
     {
         Hide();
         GetNode<Control>("Notepad").Hide();
+        GetNode<Control>("PasswordProtected").Hide();
 
         _fileArea = GetNode<Control>("FileArea");
 
         FileSystem dir0 = new FileSystem("Documents");
-            dir0.Files.Add(new Tuple<String, String>("New File.txt", "Hello, world!"));
-            dir0.Files.Add(new Tuple<String, String>("Credits.txt", "Sumokuchan and Roulyo, with <3"));
+            dir0.Files.Add(new Tuple<String, String, Boolean>("New File.txt", "Hello, world!", false));
+            dir0.Files.Add(new Tuple<String, String, Boolean>("Credits.txt", "Sumokuchan and Roulyo, with <3", false));
             FileSystem dir00 = new FileSystem("Secret!");
-                dir00.Files.Add(new Tuple<String, String>("Diary.txt", "Dear diary..."));
+                dir00.Files.Add(new Tuple<String, String, Boolean>("Diary.txt", "Dear diary...", true));
         FileSystem dir1 = new FileSystem("Programs");
 
         _fs = new FileSystem("C:");
-        _fs.Files.Add(new Tuple<String, String>("clue.txt", "8"));
+        _fs.Files.Add(new Tuple<String, String, Boolean>("clue.txt", "8", false));
         _fs.AddChildren(dir0);
             dir0.AddChildren(dir00);
         _fs.AddChildren(dir1);
@@ -85,7 +86,7 @@ public class ComputerGame : ObjectOfInterestFeature
             ++fileCount;
         }
 
-        foreach (Tuple<String, String> file in _currentFolder.Files)
+        foreach (Tuple<String, String, Boolean> file in _currentFolder.Files)
         {
             Icon icon = CreateIcon(fileCount);
             icon.GetNode<Label>("Label").Text = file.Item1;
@@ -140,9 +141,18 @@ public class ComputerGame : ObjectOfInterestFeature
     {
         Control notepad = GetNode<Control>("Notepad");
         int fileIndex = index - _currentFolder.Children.Count;
-
+        bool isPasswordProtected = _currentFolder.Files[fileIndex].Item3;
         notepad.GetNode<TextEdit>("TextEdit").Text = _currentFolder.Files[fileIndex].Item2;
-        notepad.Show();
+
+        if (isPasswordProtected == false)
+        {
+            notepad.Show();
+        }
+        else if (isPasswordProtected == true)
+        {
+            GetNode<Control>("PasswordProtected").Show();
+            GetNode<Label>("PasswordProtected/WrongPassword").Hide();
+        }
     }
 
 //-----------------------------------------------------------------------------
@@ -166,5 +176,25 @@ public class ComputerGame : ObjectOfInterestFeature
     private void OnNotepadCloseButtonPressed()
     {
         GetNode<Control>("Notepad").Hide();
+    }
+//-----------------------------------------------------------------------------
+    private void OnPasswordProtectedCloseButtonPressed()
+    {
+        GetNode<Control>("PasswordProtected").Hide();
+    }
+//-----------------------------------------------------------------------------
+    public void OnLineEditTextEntered(String text)
+    {
+        if (text == "1994")
+        {
+            GetNode<Control>("Notepad").Show();
+
+            GetNode<LineEdit>("PasswordProtected/LineEdit").Editable = false;
+            GetNode<Control>("PasswordProtected").Hide();
+        }
+        else
+        {
+            GetNode<Label>("PasswordProtected/WrongPassword").Show();
+        }
     }
 }
