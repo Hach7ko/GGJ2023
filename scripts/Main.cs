@@ -16,7 +16,7 @@ public class Main : Node2D
 
     private Vector2     _screenSize;
 
-    private Room[]      _rooms = new Room[2];
+    private Room[]      _rooms = new Room[4];
     private int         _currentRoomIndex = 0;
 
     private bool        _switching = false;
@@ -27,8 +27,11 @@ public class Main : Node2D
     {
         _screenSize = GetViewportRect().Size;
 
-        _rooms[0] = GetNode<Room>("Room_Left");
-        _rooms[1] = GetNode<Room>("Room_Right");
+        _rooms[0] = GetNode<Room>("Room_Back");
+        _rooms[1] = GetNode<Room>("Room_Left");
+        _rooms[2] = GetNode<Room>("Room_Front");
+        _rooms[3] = GetNode<Room>("Room_Right");
+        
 
         _rooms[_currentRoomIndex].Visible = true;
     }

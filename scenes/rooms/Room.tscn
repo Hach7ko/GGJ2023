@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scripts/rooms/Room.cs" type="Script" id=1]
 [ext_resource path="res://assets/shaders/blur.gdshader" type="Shader" id=2]
-[ext_resource path="res://assets/room.jpg" type="Texture" id=3]
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 2 )
@@ -15,4 +14,3 @@ script = ExtResource( 1 )
 material = SubResource( 2 )
 position = Vector2( 498.5, 288.25 )
 scale = Vector2( 0.850781, 0.659896 )
-texture = ExtResource( 3 )

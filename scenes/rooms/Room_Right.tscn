@@ -1,13 +1,16 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/rooms/Room.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scenes/objects/ComputerObject.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/rooms_background/right.png" type="Texture" id=2]
+[ext_resource path="res://scenes/objects/Poster.tscn" type="PackedScene" id=4]
 
 [node name="Room_Right" instance=ExtResource( 1 )]
 
 [node name="BGSprite" parent="." index="0"]
 scale = Vector2( -0.851, 0.66 )
+texture = ExtResource( 2 )
+flip_h = true
 
-[node name="ComputerObject" parent="." index="1" instance=ExtResource( 3 )]
-position = Vector2( 751, 188 )
-scale = Vector2( -0.2, 0.2 )
+[node name="Poster" parent="." index="1" instance=ExtResource( 4 )]
+position = Vector2( 237, 282 )
+scale = Vector2( 0.25, 0.25 )

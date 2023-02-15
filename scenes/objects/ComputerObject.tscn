@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/objects/ObjectOfInterest.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/computer.png" type="Texture" id=2]
+[ext_resource path="res://assets/games/laptop.png" type="Texture" id=2]
 [ext_resource path="res://scenes/features/ComputerGame.tscn" type="PackedScene" id=3]
 
 [node name="ComputerObject" instance=ExtResource( 1 )]

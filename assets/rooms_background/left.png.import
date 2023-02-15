@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/homework.jpg-3775ab6cb2ba6065f5f096f9a3293420.stex"
+path="res://.import/left.png-8b596d141ad1c42d66d059f75822ee86.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/homework.jpg"
-dest_files=[ "res://.import/homework.jpg-3775ab6cb2ba6065f5f096f9a3293420.stex" ]
+source_file="res://assets/rooms_background/left.png"
+dest_files=[ "res://.import/left.png-8b596d141ad1c42d66d059f75822ee86.stex" ]
 
 [params]
 
